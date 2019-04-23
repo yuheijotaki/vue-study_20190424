@@ -1,42 +1,37 @@
 <template>
   <div class="wrapper">
-    <product-header
+    <work-header
       v-bind:count="filteredList.length"
       v-bind:showSaleItem="showSaleItem"
-      v-bind:showDelvFree="showDelvFree"
       v-bind:sortOrder="sortOrder"
       v-on:showSaleItemChanged="showSaleItem=!showSaleItem"
-      v-on:showDelvFreeChanged="showDelvFree=!showDelvFree"
       v-on:sortOrderChanged="sortOrderChanged">
-    </product-header>
+    </work-header>
     <div class="list">
-      <product
-        v-for="product in filteredList"
-        v-bind:product="product"
-        v-bind:key="product.id">
-      </product>
+      <work
+        v-for="work in filteredList"
+        v-bind:work="work"
+        v-bind:key="work.id">
+      </work>
     </div>
-    <p class="caution">画像サンプル：<a href="http://bitsample2.shop-pro.jp/">http://bitsample2.shop-pro.jp/</a></p>
   </div>
 </template>
 
 <script>
-import productHeader from './product-header.vue';
-import product from './product.vue';
+import workHeader from './work-header.vue';
+import work from './work.vue';
 
 export default {
-  name: 'productList',
-  props: ['products'],
+  name: 'workList',
+  props: ['works'],
   components: {
-    'product-header': productHeader,
-    'product': product,
+    'work-header': workHeader,
+    'work': work,
   },
   data: function () {
     return {
       // 「セール対象」のチェック状態（true:チェックあり、false:チェックなし）
       showSaleItem: false,
-      // 「送料無料」のチェック状態（true:チェックあり、false:チェックなし）
-      showDelvFree: false,
       // 「並び替え」の選択値（1:標準、2:価格が安い順）
       sortOrder: 1
     }
@@ -53,30 +48,17 @@ export default {
     filteredList: function () {
       // 絞り込み後の商品リストを格納する新しい配列
       var newList = [];
-      for (var i=0; i<this.products.length; i++) {
+      for (var i=0; i<this.works.length; i++) {
         // 表示対象かどうかを判定するフラグ
         var isShow = true;
         // i番目の商品が表示対象かどうかを判定する
-        if (this.showSaleItem && !this.products[i].isSale) {
+        if (this.showSaleItem && !this.works[i].isSale) {
           // 「セール対象」チェックありで、セール対象商品ではない場合
           isShow = false; // この商品は表示しない
         }
-        if (this.showDelvFree && this.products[i].delv > 0) {
-          //「送料無料」チェック有りで、送料有りの商品の場合
-          isShow = false; // この商品は表示しない
-        }
         if (isShow) {
-          newList.push(this.products[i]);
+          newList.push(this.works[i]);
         }
-      }
-      // 新しい配列を並び替える
-      if (this.sortOrder == 1) {
-        // 元の順番にpushしているので並び替え済み
-      } else if (this.sortOrder == 2) {
-        // 価格が安い順に並び替える
-        newList.sort(function (a,b) {
-          return a.price - b.price;
-        });
       }
       // 絞り込み後の商品リストを返す
       return newList;
@@ -95,11 +77,5 @@ export default {
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
-}
-.caution {
-  margin-top: 20px;
-  a {
-    color: rgb(62, 108, 236);
-  }
 }
 </style>

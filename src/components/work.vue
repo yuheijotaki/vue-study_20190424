@@ -1,32 +1,24 @@
 <template>
   <div class="item">
     <ul class="icon">
-      <template v-if="product.isSale">
+      <template v-if="work.isSale">
         <li class="sale"><span>SALE</span></li>
-      </template>
-      <template v-if="product.delv == 0">
-        <li class="delv"><span>送料無料</span></li>
-      </template>
-      <template v-else>
-        <li class="delv"><span>送料 ¥{{product.delv | number_format}}</span></li>
       </template>
     </ul>
     <figure>
-      <img v-bind:src="product.image">
+      <img v-bind:src="work.image">
     </figure>
     <div class="meta">
-      <h2 v-html="product.name"></h2>
-      <h3>¥{{product.price | number_format}}</h3>
+      <h2 v-html="work.name"></h2>
+      <h3>¥{{work.price}}</h3>
     </div>
   </div>
 </template>
 
 <script>
-import './filter.js';
-
 export default {
-  name: 'product',
-  props: ['product']
+  name: 'work',
+  props: ['work']
 }
 </script>
 
@@ -75,9 +67,6 @@ export default {
       }
       &.sale {
         background: rgb(240, 53, 53);
-      }
-      &.delv {
-        background: #999;
       }
     }
   }
