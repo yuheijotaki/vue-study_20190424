@@ -1,21 +1,12 @@
 # vue-study_20190424
 
-> A Vue.js project
 
-## Build Setup
 
-``` bash
-# install dependencies
-npm install
+### 残りやること
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+- 記事一覧の取得はできたので、カテゴリーごとにフィルターをかけれるようにする。
+  - WordPress が絞り込み結果的によいので、まずそれ1つでサンプル
+  - チェックボックスをカテゴリー分用意して、全カテゴリーでフィルターできるようにする。
+- 記述の整理
+  - ファイルやパーツ命名のリファクタリング
+  - コンポーネントの分け方も見直しをする
