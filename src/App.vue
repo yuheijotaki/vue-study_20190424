@@ -6,6 +6,7 @@
 
 <script>
 import "normalize.css";
+import axios from "axios";
 import workList from './components/work-list.vue';
 
 export default {
@@ -16,7 +17,8 @@ export default {
   data: function () {
     return {
       // 商品リスト
-      works: [
+      works: [],
+      hoge: [
         {
           id: '01',
           name: '紫いものビスケット',
@@ -102,6 +104,22 @@ export default {
           isSale: false
         }
       ]
+    }
+  },
+  created: function(){
+    this.request();
+  },
+  methods: {
+    request: function(){
+      axios.get( 'https://works.yuheijotaki.com/wp-json/wp/v2/posts?per_page=100' )
+      .then( response => {
+        this.works = response.data;
+        this.works[0].hoge = "fuga";
+        console.table(this.works);
+      })
+      .catch( error => {
+        console.log(error);
+      });
     }
   }
 }

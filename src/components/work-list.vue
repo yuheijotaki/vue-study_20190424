@@ -2,11 +2,10 @@
   <div class="wrapper">
     <work-header
       v-bind:count="filteredList.length"
-      v-bind:showSaleItem="showSaleItem"
-      v-bind:sortOrder="sortOrder"
-      v-on:showSaleItemChanged="showSaleItem=!showSaleItem"
-      v-on:sortOrderChanged="sortOrderChanged">
+      v-bind:showCatWpItem="showCatWpItem"
+      v-on:showCatWpItemChanged="showCatWpItem=!showCatWpItem">
     </work-header>
+
     <div class="list">
       <work
         v-for="work in filteredList"
@@ -31,16 +30,7 @@ export default {
   data: function () {
     return {
       // 「セール対象」のチェック状態（true:チェックあり、false:チェックなし）
-      showSaleItem: false,
-      // 「並び替え」の選択値（1:標準、2:価格が安い順）
-      sortOrder: 1
-    }
-  },
-  methods: {
-    // 「並び替え」の選択値が変わったとき呼び出されるメソッド
-    sortOrderChanged: function (order) {
-      // 現在の選択値を新しい選択値で上書きする
-      this.sortOrder = order;
+      showCatWpItem: false,
     }
   },
   computed: {
@@ -52,7 +42,7 @@ export default {
         // 表示対象かどうかを判定するフラグ
         var isShow = true;
         // i番目の商品が表示対象かどうかを判定する
-        if (this.showSaleItem && !this.works[i].isSale) {
+        if (this.showCatWpItem && !this.works[i].isCatWp) {
           // 「セール対象」チェックありで、セール対象商品ではない場合
           isShow = false; // この商品は表示しない
         }

@@ -1,16 +1,19 @@
 <template>
   <div class="item">
     <ul class="icon">
-      <template v-if="work.isSale">
-        <li class="sale"><span>SALE</span></li>
+      <template v-if="work.isCatWp">
+        <li class="catWp"><span>WordPress</span></li>
       </template>
     </ul>
     <figure>
-      <img v-bind:src="work.image">
+      <img v-bind:src="work.images.full">
     </figure>
     <div class="meta">
-      <h2 v-html="work.name"></h2>
-      <h3>¥{{work.price}}</h3>
+      <p v-html="work.id"></p>
+      <p v-html="work.date"></p>
+      <p v-html="work.slug"></p>
+      <p v-html="work.title.rendered"></p>
+      <p v-html="work.acf.post_url"></p>
     </div>
   </div>
 </template>
@@ -65,7 +68,7 @@ export default {
         display: inline-block;
         padding: 5px 7px;
       }
-      &.sale {
+      &.catWp {
         background: rgb(240, 53, 53);
       }
     }

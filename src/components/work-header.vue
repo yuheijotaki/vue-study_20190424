@@ -7,9 +7,9 @@
       <div class="target">
         <label>
           <input type="checkbox"
-            v-bind:checked="showSaleItem"
-            v-on:change="$emit('showSaleItemChanged')"
-          > セール対象 <code>{{showSaleItem}}</code></label>
+            v-bind:checked="showCatWpItem"
+            v-on:change="$emit('showCatWpItemChanged')"
+          > WordPress <code>{{showCatWpItem}}</code></label>
       </div>
     </div>
   </header>
@@ -18,7 +18,7 @@
 <script>
 export default {
   name: 'workHeader',
-  props: ['count','showSaleItem']
+  props: ['count','showCatWpItem']
 }
 </script>
 
