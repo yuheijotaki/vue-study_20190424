@@ -1,21 +1,24 @@
 <template>
-  <div class="item">
-    <ul class="icon">
-      <template v-if="work.isCatWp">
-        <li class="catWp"><span>WordPress</span></li>
+  <div class="item"><a v-bind:href="work.acf.post_url" target="_blank">
+    <div class="thumbnail">
+      <figure class="image"><img v-bind:src="work.images.full"></figure>
+    </div>
+    <ul class="category">
+      <template v-if="work.isCatFrontEnd">
+        <li class="catFrontEnd"><span>Front-End</span></li>
+      </template>
+      <template v-if="work.isCatWordPress">
+        <li class="catWordPress"><span>WordPress</span></li>
+      </template>
+      <template v-if="work.isCatWebDesign">
+        <li class="catWebDesign"><span>Web Design</span></li>
+      </template>
+      <template v-if="work.isCatTumblr">
+        <li class="catTumblr"><span>Tumblr</span></li>
       </template>
     </ul>
-    <figure>
-      <img v-bind:src="work.images.full">
-    </figure>
-    <div class="meta">
-      <p v-html="work.id"></p>
-      <p v-html="work.date"></p>
-      <p v-html="work.slug"></p>
-      <p v-html="work.title.rendered"></p>
-      <p v-html="work.acf.post_url"></p>
-    </div>
-  </div>
+    <p class="title" v-html="work.title.rendered"></p>
+  </a></div>
 </template>
 
 <script>
@@ -27,62 +30,58 @@ export default {
 
 <style lang="scss" scoped>
 .item {
-  width: 25%;
-  padding: 50px 10px 20px;
-  border: #ddd 1px solid;
-  border-right: 0;
-  box-sizing: border-box;
-  position: relative;
-  &:last-child,
+  width: 22%;
+  margin-top: 2%;
+  margin-right: 4%;
+  &:nth-child(-n+4) {
+    margin-top: 0;
+  }
   &:nth-child(4n) {
-    border-right: #ddd 1px solid;
+    margin-right: 0;
   }
-  &:nth-child(n+5) {
-    border-top: 0;
+  a {
+    text-decoration: none;
+    display: block;
   }
-  figure {
-    text-align: center;
-    img {
-      max-width: 120px;
-      height: auto;
-      border-radius: 4px;
+}
+.thumbnail {
+  position: relative;
+}
+.image {
+  text-align: center;
+  font-size: 0;
+  line-height: 0;
+  img {
+    max-width: 200px;
+    height: auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    border-radius: 2px;
+  }
+}
+.category {
+  margin-top: 15px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  li {
+    border: #ccc 1px solid;
+    padding: 4px 5px;
+    margin-right: 5px;
+    color: #999;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 2px;
+    background: #fff;
+    &:last-child {
+      margin-right: 0;
     }
   }
-  .icon {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    display: flex;
-    list-style: none;
-    li {
-      color: #fff;
-      font-size: 11px;
-      line-height: 1;
-      font-weight: bold;
-      border-radius: 2px;
-      margin-right: 4px;
-      &:last-child {
-        margin-right: 0;
-      }
-      span {
-        display: inline-block;
-        padding: 5px 7px;
-      }
-      &.catWp {
-        background: rgb(240, 53, 53);
-      }
-    }
-  }
-  .meta {
-    margin-top: 4px;
-    text-align: center;
-    h2 {
-      color: #666;
-      font-size: 12px;
-    }
-    h3 {
-      font-size: 16px;
-    }
-  }
+}
+.title {
+  margin-top: 10px;
+  text-align: center;
+  color: #222;
+  font-size: 13px;
+  line-height: 1.4;
 }
 </style>
