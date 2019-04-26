@@ -80,12 +80,18 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-  max-width: 1040px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 50px;
+  @include mq() {
+    padding: 0 20px;
+  }
 }
 main {
   margin: 50px 0 80px;
+  @include mq() {
+    margin: 30px 0 40px;
+  }
 }
 .list {
   display: flex;

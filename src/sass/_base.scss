@@ -1,0 +1,44 @@
+/****************************
+  variable
+*****************************/
+
+// color
+$black: #000;
+$white: #fff;
+
+// easing
+$easeInQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$easeInExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+$easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
+
+
+
+/****************************
+  Break points
+  ref: https://www.tam-tam.co.jp/tipsnote/html_css/post10708.html
+*****************************/
+$breakpoints: (
+  'sm': 'screen and (max-width: 400px)',
+  'md': 'screen and (max-width: 768px)',
+  'lg': 'screen and (max-width: 1000px)',
+  'xl': 'screen and (max-width: 1200px)',
+) !default;
+
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+// 使い方の例
+// @include mq() {}
+.foo {
+  color: blue;
+  @include mq() { // 引数を省略（初期値はmdの768px）
+    color: yellow;
+  }
+  @include mq(xl) { // 引数を個別に指定
+    color: red;
+  }
+}

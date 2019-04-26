@@ -54,6 +54,10 @@ header {
   display: flex;
   align-items: center;
   line-height: 1;
+  @include mq() {
+    margin-top: 30px;
+    display: block;
+  }
 }
 .logo {
   width: 20%;
@@ -61,13 +65,24 @@ header {
   font-size: 14px;
   line-height: 1;
   font-weight: normal;
+  @include mq() {
+    width: auto;
+    text-align: center;
+  }
 }
 .filter {
   width: 60%;
   display: flex;
   justify-content: center;
+  @include mq() {
+    width: auto;
+    margin-top: 20px;
+  }
   .label {
     margin-right: 20px;
+    @include mq() {
+      display: none;
+    }
   }
 }
 .check {
@@ -119,5 +134,8 @@ header {
 .result {
   width: 20%;
   text-align: right;
+  @include mq() {
+    display: none;
+  }
 }
 </style>

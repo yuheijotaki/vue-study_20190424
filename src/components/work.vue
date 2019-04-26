@@ -38,6 +38,23 @@ export default {
   &:nth-child(4n) {
     margin-right: 0;
   }
+  @include mq() {
+    width: 32%;
+    margin-top: 4%;
+    margin-right: 2%;
+    &:nth-child(-n+4) {
+      margin-top: 4%;
+    }
+    &:nth-child(4n) {
+      margin-right: 2%;
+    }
+    &:nth-child(-n+3) {
+      margin-top: 0;
+    }
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+  }
   a {
     text-decoration: none;
     display: block;
@@ -45,6 +62,9 @@ export default {
       .image {
         transform: scale(.975);
         transform-origin: center;
+        @include mq() {
+          transform: none;
+        }
       }
     }
   }
@@ -56,6 +76,9 @@ export default {
   font-size: 0;
   line-height: 0;
   transition: .075s linear;
+  @include mq() {
+    transition: none;
+  }
   img {
     max-width: 100%;
     height: auto;
@@ -71,6 +94,9 @@ export default {
     list-style: none;
     display: flex;
     justify-content: center;
+    @include mq() {
+      display: none;
+    }
     li {
       color: #aaa;
       font-size: 10px;
@@ -95,8 +121,12 @@ export default {
     margin-top: 4px;
     color: #222;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.4;
     text-align: center;
+    @include mq() {
+      margin-top: 0;
+      font-size: 12px;
+    }
   }
 }
 </style>
