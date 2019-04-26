@@ -3,21 +3,20 @@
     <div class="thumbnail">
       <figure class="image"><img v-bind:src="work.images.full"></figure>
     </div>
-    <ul class="category">
-      <template v-if="work.isCatFrontEnd">
-        <li class="catFrontEnd"><span>Front-End</span></li>
-      </template>
-      <template v-if="work.isCatWordPress">
-        <li class="catWordPress"><span>WordPress</span></li>
-      </template>
-      <template v-if="work.isCatWebDesign">
-        <li class="catWebDesign"><span>Web Design</span></li>
-      </template>
-      <template v-if="work.isCatTumblr">
-        <li class="catTumblr"><span>Tumblr</span></li>
-      </template>
-    </ul>
-    <p class="title" v-html="work.title.rendered"></p>
+    <div class="meta">
+      <ul class="category">
+        <template v-if="work.isCatWordPress">
+          <li class="catWordPress">WordPress</li>
+        </template>
+        <template v-if="work.isCatWebDesign">
+          <li class="catWebDesign">Web Design</li>
+        </template>
+        <template v-if="work.isCatTumblr">
+          <li class="catTumblr">Tumblr</li>
+        </template>
+      </ul>
+      <p class="title">{{work.title.rendered}}</p>
+    </div>
   </a></div>
 </template>
 
@@ -30,9 +29,9 @@ export default {
 
 <style lang="scss" scoped>
 .item {
-  width: 22%;
-  margin-top: 2%;
-  margin-right: 4%;
+  width: 20%;
+  margin-top: 3%;
+  margin-right: 6.6666666666667%;
   &:nth-child(-n+4) {
     margin-top: 0;
   }
@@ -42,46 +41,62 @@ export default {
   a {
     text-decoration: none;
     display: block;
+    &:hover {
+      .image {
+        transform: scale(.975);
+        transform-origin: center;
+      }
+    }
   }
 }
 .thumbnail {
-  position: relative;
 }
 .image {
   text-align: center;
   font-size: 0;
   line-height: 0;
+  transition: .075s linear;
   img {
-    max-width: 200px;
+    max-width: 100%;
     height: auto;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
     border-radius: 2px;
   }
 }
-.category {
-  margin-top: 15px;
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  li {
-    border: #ccc 1px solid;
-    padding: 4px 5px;
-    margin-right: 5px;
-    color: #999;
-    font-size: 10px;
-    line-height: 1;
-    border-radius: 2px;
-    background: #fff;
-    &:last-child {
-      margin-right: 0;
+.meta {
+  margin-top: 10px;
+  .category {
+    font-size: 0;
+    line-height: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    li {
+      color: #aaa;
+      font-size: 10px;
+      line-height: 1;
+      display: inline-block;
+      position: relative;
+      padding-right: 4px;
+      &:after {
+        content: '/';
+        padding-left: 4px;
+      }
+      &:last-child {
+        padding-right: 0;
+        &:after {
+          content: '';
+          padding-left: 0;
+        }
+      }
     }
   }
-}
-.title {
-  margin-top: 10px;
-  text-align: center;
-  color: #222;
-  font-size: 13px;
-  line-height: 1.4;
+  .title {
+    margin-top: 4px;
+    color: #222;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+  }
 }
 </style>

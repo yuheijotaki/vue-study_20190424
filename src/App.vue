@@ -30,11 +30,6 @@ export default {
         let obj = this.works;
         Object.keys(obj).forEach((key) => {
           const catName = obj[key].category_name; // この投稿が属するカテゴリー
-          if (catName.includes('Front-end')) {
-            obj[key].isCatFrontEnd = true;
-          } else {
-            obj[key].isCatFrontEnd = false;
-          }
           if (catName.includes('WordPress')) {
             obj[key].isCatWordPress = true;
           } else {
@@ -51,7 +46,7 @@ export default {
             obj[key].isCatTumblr = false;
           }
         });
-        console.table(obj);
+        // console.table(obj);
       })
       .catch( error => {
         console.log(error);
@@ -77,9 +72,9 @@ h1,h2,h3,h4,h5,h6 {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-feature-settings : "palt";
-  color: #444;
-  font-size: 12px;
-  letter-spacing: .01em;
-  line-height: 1.4;
+  color: #222;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.02em;
 }
 </style>

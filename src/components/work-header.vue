@@ -1,37 +1,37 @@
 <template>
   <header>
-    <h1 class="header_logo">works.yuheijotaki.com</h1>
-    <div class="condition">
-      <div class="result">
-        検索結果：<span class="count">{{count}}</span> 件
-      </div>
-      <div class="filter">
-        <p>filter</p>
-        <label>
+    <h1 class="logo">works.yuheijotaki.com</h1>
+    <div class="filter">
+      <p class="label">Filter:</p>
+      <div class="check">
+        <p>
           <input type="checkbox"
-            v-bind:checked="showCatFrontEndItem"
-            v-on:change="$emit('showCatFrontEndItemChanged')"
-          > Front-End
-        </label>
-        <label>
-          <input type="checkbox"
+            id="check02"
             v-bind:checked="showCatWordPressItem"
             v-on:change="$emit('showCatWordPressItemChanged')"
-          > WordPress
-        </label>
-        <label>
+          >
+          <label for="check02">WordPress</label>
+        </p>
+        <p>
           <input type="checkbox"
+            id="check03"
             v-bind:checked="showCatWebDesignItem"
             v-on:change="$emit('showCatWebDesignItemChanged')"
-          > Web Design
-        </label>
-        <label>
+          >
+          <label for="check03">Web Design</label>
+        </p>
+        <p>
           <input type="checkbox"
+            id="check04"
             v-bind:checked="showCatTumblrItem"
             v-on:change="$emit('showCatTumblrItemChanged')"
-          > Tumblr
-        </label>
+          >
+          <label for="check04">Tumblr</label>
+        </p>
       </div>
+    </div>
+    <div class="result">
+      <p>Result <span class="count">{{count}}</span> posts</p>
     </div>
   </header>
 </template>
@@ -41,7 +41,6 @@ export default {
   name: 'workHeader',
   props: [
     'count',
-    'showCatFrontEndItem',
     'showCatWordPressItem',
     'showCatWebDesignItem',
     'showCatTumblrItem'
@@ -51,21 +50,75 @@ export default {
 
 <style lang="scss" scoped>
 header {
+  margin-top: 50px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   line-height: 1;
 }
-.header_logo {
-  font-size: 12px;
+.logo {
+  width: 20%;
+  color: #222;
+  font-size: 14px;
   line-height: 1;
-}
-.condition {
-  display: flex;
-}
-.result {
+  font-weight: normal;
 }
 .filter {
+  width: 60%;
   display: flex;
+  justify-content: center;
+  .label {
+    margin-right: 20px;
+  }
+}
+.check {
+  display: flex;
+  p {
+    margin-right: 16px;
+    &:last-child {
+      margin-right: 0;
+    }
+    input[type=checkbox] {
+      display: none;
+    }
+    label:focus,
+    label:active,
+    input:checked + label {
+      color: #444;
+    }
+    label:focus:before,
+    label:active:before,
+    input:checked + label:before {
+      border: #444 1px solid;
+      background: #fff;
+    }
+    label {
+      padding-left: 20px;
+      position: relative;
+      display: block;
+      // overflow: hidden;
+      cursor: pointer;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      background: #fff;
+    }
+    label:before {
+      position: absolute;
+      top: 1px;
+      left: 0;
+      width: 11px;
+      height: 11px;
+      content: '';
+      border: #ccc 1px solid;
+      border-radius: 1px;
+    }
+    input:checked + label:before {
+      border: #444 1px solid;
+      background: #444;
+    }
+  }
+}
+.result {
+  width: 20%;
+  text-align: right;
 }
 </style>
