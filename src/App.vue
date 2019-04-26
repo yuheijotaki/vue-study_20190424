@@ -29,7 +29,7 @@ export default {
         this.works = response.data; // JSONデータの取得
         let obj = this.works;
         Object.keys(obj).forEach((key) => {
-          const catName = obj[key].category_name; // この投稿が属するカテゴリー
+          const catName = obj[key].category_name; // この投稿が属するカテゴリーを判定、オブジェクトに追加
           if (catName.includes('WordPress')) {
             obj[key].isCatWordPress = true;
           } else {

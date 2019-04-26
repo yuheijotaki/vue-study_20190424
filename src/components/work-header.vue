@@ -95,7 +95,6 @@ header {
       padding-left: 20px;
       position: relative;
       display: block;
-      // overflow: hidden;
       cursor: pointer;
       white-space: nowrap;
       text-overflow: ellipsis;

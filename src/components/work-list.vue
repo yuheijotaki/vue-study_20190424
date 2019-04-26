@@ -36,23 +36,23 @@ export default {
   },
   data: function () {
     return {
-      // 「セール対象」のチェック状態（true:チェックあり、false:チェックなし）
+      // 各カテゴリーのチェック状態（true:チェックあり、false:チェックなし）
       showCatWordPressItem: false,
       showCatWebDesignItem: false,
       showCatTumblrItem: false,
-      // フィルター結果がない用のチェック
+      // 絞り込み後の投稿が0件用のフラグ
       noEntry: null
     }
   },
   computed: {
-    // 絞り込み後の商品リストを返す算出プロパティ
+    // 絞り込み後の投稿リストを返す算出プロパティ
     filteredList: function () {
-      // 絞り込み後の商品リストを格納する新しい配列
+      // 絞り込み後の投稿リストを格納する新しい配列
       var newList = [];
       for (var i=0; i<this.works.length; i++) {
         // 表示対象かどうかを判定するフラグ
         var isShow = true;
-        // i番目の商品が表示対象かどうかを判定する
+        // i番目の投稿が表示対象かどうかを判定する
         if (this.showCatWordPressItem && !this.works[i].isCatWordPress) {
           isShow = false;
         }
@@ -71,7 +71,7 @@ export default {
       } else {
         this.noEntry = false;
       }
-      // 絞り込み後の商品リストを返す
+      // 絞り込み後の投稿リストを返す
       return newList;
     }
   }
