@@ -71,7 +71,7 @@ h1,h2,h3,h4,h5,h6 {
   padding: 0;
 }
 #app {
-  font-family: Helvetica Neue, Helvetica, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  font-family: -apple-system, 'BlinkMacSystemFont', Helvetica Neue, Helvetica, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
