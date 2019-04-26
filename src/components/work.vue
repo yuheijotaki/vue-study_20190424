@@ -5,6 +5,9 @@
     </div>
     <div class="meta">
       <ul class="category">
+        <template v-if="work.isCatFrontEnd">
+          <li class="catFrontEnd">Front-end</li>
+        </template>
         <template v-if="work.isCatWordPress">
           <li class="catWordPress">WordPress</li>
         </template>
@@ -94,7 +97,7 @@ export default {
     list-style: none;
     display: flex;
     justify-content: center;
-    @include mq() {
+    @include mq(xl) {
       display: none;
     }
     li {

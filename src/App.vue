@@ -30,6 +30,11 @@ export default {
         let obj = this.works;
         Object.keys(obj).forEach((key) => {
           const catName = obj[key].category_name; // この投稿が属するカテゴリーを判定、オブジェクトに追加
+          if (catName.includes('Front-end')) {
+            obj[key].isCatFrontEnd = true;
+          } else {
+            obj[key].isCatFrontEnd = false;
+          }
           if (catName.includes('WordPress')) {
             obj[key].isCatWordPress = true;
           } else {

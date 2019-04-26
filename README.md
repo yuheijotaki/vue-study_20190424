@@ -1,84 +1,53 @@
-# Vue.js / JSON から情報を引っ張ってくる その13
+# Vue.js / JSON から情報を引っ張ってくる その14
 
+ポートフォリオサイト 前回の続き
 
+**やったこと**
 
-[【学習メモ】Vue.js のツボとコツがゼッタイにわかる本 その3](https://yuheijotaki.hatenablog.com/entry/2019/04/05/101951) のデモをベースにしてポートフォリオサイトを作り直す。
+- デザインいれる
+- レスポンシブ
+- ソース整理
 
-Github Pages: https://yuheijotaki.github.io/vue-study_20190424/  
+Github Pages: https://yuheijotaki.github.io/vue-study_20190424/
 リポジトリ: https://github.com/yuheijotaki/vue-study_20190424
 
+### Vue.js で変数や mixin を使う
 
-
-### ファイル構成
-
-```
-/src/
-└ App.vue
-└ main.js
-└ /components/
-  └ work-header.vue
-  └ work-list.vue
-  └ work.vue
-```
-
-`App.vue` ファイルにて `axios` を使ってJSON取得、 表示判定は `work-list.vue` で行う。  
-`work-header.vue` からチェックボックス状態のプロパティと値を `props` して  `work-list.vue` で表示判定  
-`work.vue` はアイテム1つ単位の表示専用コンポーネント
-
-
-
-### いじった所
-
-WordPress の REST API で取得できるカテゴリーが
-
-```json
-[
-  0: {
-    ...
-    category_name: "Front-end ,WordPress"
-    ...
-  },
-  ...
-]
-```
-
-というオブジェクトになるので、
+[Vue.jsでSassを使う時にグローバル変数を読み込む方法 - Goota](https://gootablog.com/vuejs-sass-globalvariables) の通りなのですが、 `sass-resources-loader` を npmインストールして、`/build/utils.js` のなか、
 
 ```javascript
-  methods: {
-    request: function(){
-      axios.get( 'https://works.yuheijotaki.com/wp-json/wp/v2/posts?per_page=100' )
-      .then( response => {
-        this.works = response.data; // JSONデータの取得
-        let obj = this.works;
-        Object.keys(obj).forEach((key) => {
-          const catName = obj[key].category_name; // この投稿が属するカテゴリー
-          if (catName.includes('Front-end')) {
-            obj[key].isCatFrontEnd = true;
-          } else {
-            obj[key].isCatFrontEnd = false;
-          }
-  ...
+...
+  scss: generateLoaders('sass'),
+...
 ```
 
-のように `isCatFrontEnd` のプロパティと `true` or `false` の値をつけた。  
-`work-list.vue` の `computed` でこの処理やったほうがスマートそうですが、できるかよく分からずJSONに書き足す形になっちゃいました。
+を
 
+```javascript
+...
+  scss: generateLoaders('sass').concat(
+    {
+      loader: 'sass-resources-loader',
+      options: {
+        resources: path.resolve(__dirname, '../src/sass/_base.scss')
+      }
+    }),
+...
+```
 
+とする
 
-### 残り
+## まとめ
 
-- 記述の整理
-  - ファイルやパーツ命名のリファクタリング
-  - コンポーネントの分け方も見直しをする
+**やりたい（やりたかった）こと**
 
-- スタイリング
-  - 見た目整える
-  - レスポンシブ
+- 初回ローディング時には `No posts` は非表示
+- ヘッダーのチェックボックスのカテゴリーを動的出力 or ループ処理
+- 詳細ページの作成
 
+WordPress のテーマ側に組み込むには下記などが参考になりそう
+- [wordpress で SNS や SEO に優しい簡単 SPA 作り - Qiita](https://qiita.com/d2cd-kimura/items/c8283849c4dff245d219)
+- [WordPressで全面的にVue.jsを導入してみた(SPA実装ではない) - 超空洞](http://itaoyuta.hatenablog.com/entry/2017/12/28/152338)
 
-
-
-
-
+GWになるので、一回やること整理しつつ次の課題やっていきたいと思います。
 
