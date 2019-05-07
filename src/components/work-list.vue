@@ -11,6 +11,7 @@
     >
     </work-header>
     <main>
+      <p :is-loading="true">loading...</p>
       <p v-if="noEntry">Post not found.</p>
       <div class="list">
         <work
@@ -29,7 +30,17 @@ import work from './work.vue';
 
 export default {
   name: 'workList',
-  props: ['works'],
+  props: ['works','isLoading'],
+  // props: {
+    // works: Array,
+    // isLoading: Boolean,
+    // isLoading: Boolean,
+    // isLoading: {
+      // type: Boolean,
+      // default: false,
+      // default: undefined
+    // }
+  // },
   components: {
     'work-header': workHeader,
     'work': work,
@@ -72,6 +83,7 @@ export default {
         this.noEntry = false;
       }
       // 絞り込み後の投稿リストを返す
+      console.log(`timing3:${this.isLoading}`);
       return newList;
     }
   }

@@ -16,7 +16,13 @@ export default {
   },
   data: function () {
     return {
-      works: []
+      works: [],
+      // 初回読み込み用のフラグ
+      isLoading: false,
+      // isLoading: {
+        // type: Boolean,
+        // default: true
+      // },
     }
   },
   created: function(){
@@ -24,6 +30,8 @@ export default {
   },
   methods: {
     request: function(){
+      this.isLoading = true;
+      console.log(`timing1:${this.isLoading}`);
       axios.get( 'https://works.yuheijotaki.com/wp-json/wp/v2/posts?per_page=100' )
       .then( response => {
         this.works = response.data; // JSONデータの取得
@@ -52,6 +60,8 @@ export default {
           }
         });
         // console.table(obj);
+        this.isLoading = false;
+        console.log(`timing2:${this.isLoading}`);
       })
       .catch( error => {
         console.log(error);
